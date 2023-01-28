@@ -8,7 +8,7 @@ const PodcastSpotify = () => {
     const [spotifydata, setspotifydata] = useState(null)
     const [playerdisplay, setplayerdisplay] = useState(false)
     const [playlist, setplaylist] = useState(null)
-    const [playing, setplaying] = useState('2q52pEc8KEHH4ia78Y2jQL')
+    const [loading, setLoading] = useState(true)
     const ref = React.useRef(null)
     useEffect(() => {
         async function fetchtokenkey() {
@@ -19,11 +19,13 @@ const PodcastSpotify = () => {
                 },
                 body: 'grant_type=client_credentials&client_id=' + clientId + '&client_secret=' + clientSecret,
             }
+            setLoading(true)
             fetch('https://accounts.spotify.com/api/token', authParameters)
                 .then((result) => result.json())
                 .then((data) => {
                     settokenkey(data.access_token)
                     console.log(data)
+                    setLoading(false)
                 })
         }
         fetchtokenkey()
@@ -41,7 +43,9 @@ const PodcastSpotify = () => {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
-                    Authorization: 'Bearer ' + tokenkey,
+                    Authorization:
+                        'Bearer ' +
+                        'BQCYZdV0pBrwTR0YnQyIQYuVbcbFdGC6IKz5M0HoSHHNVyJdhlntVwMd2HEdegXjo_2IrXtWgQjCU_HP3ES-LkvmRJ6AB9TNWFz_l7f_3DDsSe0mA6EE',
                 },
             }
 
