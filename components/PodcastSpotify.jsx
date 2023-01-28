@@ -22,7 +22,7 @@ const PodcastSpotify = () => {
                 settokenkey(data.access_token)
             })
     }, [])
-    useEffect(() => {
+    async function fetchToken() {
         var showParameters = {
             method: 'GET',
             headers: {
@@ -36,7 +36,10 @@ const PodcastSpotify = () => {
                 setspotifydata(data)
                 console.log(spotifydata)
             })
-    }, [tokenkey])
+    }
+    useEffect(() => {
+        fetchToken()
+    }, [])
     return (
         <div>
             {spotifydata ? (
@@ -52,7 +55,10 @@ const PodcastSpotify = () => {
                             {spotifydata && spotifydata.total_episodes}&thinsp;/&thinsp;Episodes
                         </p>
                         <p className="font-fatface text-lg mt-1">{spotifydata && spotifydata.description}</p>
-                        <button className="border-[2px] border-black hover:drop-shadow-lg px-2 py-1 mt-2 text-xl hover:bg-[#000] hover:border-[#000] drop-shadow-sm hover:text-white duration-100  font-light  rounded-md ">
+                        <button
+                            onClick={() => setplayerdisplay(true)}
+                            className="border-[2px] border-black hover:drop-shadow-lg px-2 py-1 mt-2 text-xl hover:bg-[#000] hover:border-[#000] drop-shadow-sm hover:text-white duration-100  font-light  rounded-md "
+                        >
                             Listen
                         </button>
                     </div>
