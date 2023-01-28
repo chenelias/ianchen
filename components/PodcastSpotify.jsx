@@ -65,7 +65,7 @@ const PodcastSpotify = () => {
                                       <div className="block mr-7">
                                           <h1 className="font-fatface text-5xl">Booster Shot</h1>
                                           <p className="font-bold">2&thinsp;/&thinsp;Episodes</p>
-                                          <p className="font-fatface text-lg mt-1">
+                                          <p className="font-fatface text-lg mt-1 mb-[10px]">
                                               As a high student who is interested in storytelling and medicine from
                                               Taiwan, this podcast covers all interesting story with popular medical
                                               science. So, if you're just like me, tune in Booster Shot!
@@ -75,7 +75,7 @@ const PodcastSpotify = () => {
                                               //   onClick={() => {
                                               //       smoothingdown()
                                               //   }}
-                                              className="border-[2px] border-black hover:drop-shadow-lg px-2 py-1 mt-2 text-xl hover:bg-[#000] hover:border-[#000] drop-shadow-sm hover:text-white duration-100  font-light  rounded-md "
+                                              className="border-[2px] border-black hover:drop-shadow-lg px-2 py-1 !mt-[2] text-xl hover:bg-[#000] hover:border-[#000] drop-shadow-sm hover:text-white duration-100  font-light  rounded-md "
                                           >
                                               Learn more
                                           </Link>
