@@ -46,3 +46,8 @@
 *::-webkit-scrollbar-thumb:active {
     background-color: #666666;
 }
+
+
+::-webkit-scrollbar-corner {
+    display: none;
+}
