@@ -70,14 +70,15 @@ const PodcastSpotify = () => {
                                               Taiwan, this podcast covers all interesting story with popular medical
                                               science. So, if you're just like me, tune in Booster Shot!
                                           </p>
-                                          <button
-                                              onClick={() => {
-                                                  smoothingdown()
-                                              }}
+                                          <Link
+                                              href={'https://open.spotify.com/show/1HIq0d9AZ5KmCp1ZaMsbGs'}
+                                              //   onClick={() => {
+                                              //       smoothingdown()
+                                              //   }}
                                               className="border-[2px] border-black hover:drop-shadow-lg px-2 py-1 mt-2 text-xl hover:bg-[#000] hover:border-[#000] drop-shadow-sm hover:text-white duration-100  font-light  rounded-md "
                                           >
                                               Learn more
-                                          </button>
+                                          </Link>
                                       </div>
                                       <div className="flex-1"></div>
                                       <img
