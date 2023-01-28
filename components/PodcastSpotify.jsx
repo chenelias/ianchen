@@ -9,6 +9,7 @@ const PodcastSpotify = () => {
     const [playerdisplay, setplayerdisplay] = useState(false)
     const [playlist, setplaylist] = useState(null)
     const [loading, setLoading] = useState(true)
+    const [load, setload] = useState(true)
     const ref = React.useRef(null)
     useEffect(() => {
         async function fetchtokenkey() {
@@ -24,7 +25,7 @@ const PodcastSpotify = () => {
                 .then((result) => result.json())
                 .then((data) => {
                     setLoading(false)
-                    loading && settokenkey(data.access_token)
+                    !data || loading ? settokenkey(data.access_token) : ''
                     console.log(data)
                 })
         }
@@ -39,73 +40,77 @@ const PodcastSpotify = () => {
     }
     useEffect(() => {
         async function fetchToken() {
+            setload(true)
             var showParameters = {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
-                    Authorization:
-                        'Bearer ' +
-                        tokenkey,
+                    Authorization: 'Bearer ' + tokenkey,
                 },
             }
 
             fetch('https://api.spotify.com/v1/shows/1HIq0d9AZ5KmCp1ZaMsbGs?market=ES', showParameters)
                 .then((response) => response.json())
                 .then((data) => {
-                    setspotifydata(
-                        <div>
-                            <div className="xs:flex block mx-7 items-center group">
-                                <img
-                                    src={data.images[0].url}
-                                    className="rounded-lg drop-shadow-xl group-hover:drop-shadow-2xl duration-200 xs:h-[270px] h-[200px] w-auto block xs:hidden mb-4"
-                                    alt="show image"
-                                />
-                                <div className="block mr-7">
-                                    <h1 className="font-fatface text-5xl">{data.name}</h1>
-                                    <p className="font-bold">{data.total_episodes}&thinsp;/&thinsp;Episodes</p>
-                                    <p className="font-fatface text-lg mt-1">{data.description}</p>
-                                    <button
-                                        onClick={() => {
-                                            smoothingdown()
-                                        }}
-                                        className="border-[2px] border-black hover:drop-shadow-lg px-2 py-1 mt-2 text-xl hover:bg-[#000] hover:border-[#000] drop-shadow-sm hover:text-white duration-100  font-light  rounded-md "
-                                    >
-                                        Learn more
-                                    </button>
-                                </div>
-                                <div className="flex-1"></div>
-                                <img
-                                    src={data.images[0].url}
-                                    className="rounded-lg drop-shadow-xl group-hover:drop-shadow-2xl duration-200 xs:h-[270px] h-[200px] w-auto hidden xs:flex"
-                                    alt="show image"
-                                />
-                            </div>
-                        </div>
-                    )
+                    setload(false)
+                    !data || load
+                        ? setspotifydata(
+                              <div>
+                                  <div className="xs:flex block mx-7 items-center group">
+                                      {/* <img
+                                          src={data.images[0].url}
+                                          className="rounded-lg drop-shadow-xl group-hover:drop-shadow-2xl duration-200 xs:h-[270px] h-[200px] w-auto block xs:hidden mb-4"
+                                          alt="show image"
+                                      /> */}
+                                      <div className="block mr-7">
+                                          <h1 className="font-fatface text-5xl">{data.name}</h1>
+                                          <p className="font-bold">{data.total_episodes}&thinsp;/&thinsp;Episodes</p>
+                                          <p className="font-fatface text-lg mt-1">{data.description}</p>
+                                          <button
+                                              onClick={() => {
+                                                  smoothingdown()
+                                              }}
+                                              className="border-[2px] border-black hover:drop-shadow-lg px-2 py-1 mt-2 text-xl hover:bg-[#000] hover:border-[#000] drop-shadow-sm hover:text-white duration-100  font-light  rounded-md "
+                                          >
+                                              Learn more
+                                          </button>
+                                      </div>
+                                      <div className="flex-1"></div>
+                                      <img
+                                          src={data.images[0].url}
+                                          className="rounded-lg drop-shadow-xl group-hover:drop-shadow-2xl duration-200 xs:h-[270px] h-[200px] w-auto hidden xs:flex"
+                                          alt="show image"
+                                      />
+                                  </div>
+                              </div>
+                          )
+                        : ''
                     // ---------------------------
-                    setplaylist(
-                        <div>
-                            <div className="xs:block block mx-2 items-center max-w-3xl ">
-                                <h1 className="font-bold text-3xl text-center">All episodes of {data.name}</h1>
-                                <ul className="rounded-lg p-4  overflow-scroll max-h-[65vh] mt-5">
-                                    {data.episodes.items.map((data) => (
-                                        <Link
-                                            href={data.external_urls.spotify}
-                                            key={data.id}
-                                            className="items-center flex my-4 hover:drop-shadow-2xl "
-                                        >
-                                            <div className="block">
-                                                <h1 className="text-xl font-bold">{data.name}</h1>
-                                                {/* <p className="mt-2">{data.description}</p> */}
-                                                <p className="mt-2">{data.release_date}</p>
-                                            </div>
-                                            <div className="flex-1" />
-                                        </Link>
-                                    ))}
-                                </ul>
-                            </div>
-                        </div>
-                    )
+                    !data || load
+                        ? setplaylist(
+                              <div>
+                                  <div className="xs:block block mx-2 items-center max-w-3xl ">
+                                      <h1 className="font-bold text-3xl text-center">All episodes of {data.name}</h1>
+                                      <ul className="rounded-lg p-4  overflow-scroll max-h-[65vh] mt-5">
+                                          {data.episodes.items.map((data) => (
+                                              <Link
+                                                  href={data.external_urls.spotify}
+                                                  key={data.id}
+                                                  className="items-center flex my-4 hover:drop-shadow-2xl "
+                                              >
+                                                  <div className="block">
+                                                      <h1 className="text-xl font-bold">{data.name}</h1>
+                                                      {/* <p className="mt-2">{data.description}</p> */}
+                                                      <p className="mt-2">{data.release_date}</p>
+                                                  </div>
+                                                  <div className="flex-1" />
+                                              </Link>
+                                          ))}
+                                      </ul>
+                                  </div>
+                              </div>
+                          )
+                        : ''
                 })
         }
         fetchToken()
