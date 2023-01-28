@@ -116,7 +116,7 @@ const PodcastSpotify = () => {
                     <div className="mx-auto">
                         <p className="text-6xl font-extrabold font-fatface mb-[70px] text-center ">Podcast</p>
                     </div>
-                    <div className="justify-center items-center flex">{!spotifydata ? 'Loading...' : spotifydata}</div>
+                    <div className="justify-center items-center flex">{spotifydata && spotifydata}</div>
                 </div>
             </div>
             <div
