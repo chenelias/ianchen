@@ -7,6 +7,7 @@ module.exports = {
                 ibm: ["'IBM Plex Sans'", 'sans-serif'],
                 mplus: ["'M PLUS Rounded 1c'", 'sans-serif'],
                 code: ["'Source Code Pro', 'monospace'"],
+                fatface: ["'Abril Fatface', 'cursive'"],
             },
         },
     },
