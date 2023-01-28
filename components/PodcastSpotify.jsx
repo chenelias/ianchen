@@ -7,57 +7,89 @@ const PodcastSpotify = () => {
     const [tokenkey, settokenkey] = useState(null)
     const [spotifydata, setspotifydata] = useState(null)
     const [playerdisplay, setplayerdisplay] = useState(false)
-    const [loading, setloading] = useState(true)
-    // useEffect(() => {
-    //     var authParameters = {
-    //         method: 'POST',
-    //         headers: {
-    //             'Content-Type': 'application/x-www-form-urlencoded',
-    //         },
-    //         body: 'grant_type=client_credentials&client_id=' + clientId + '&client_secret=' + clientSecret,
-    //     }
-    //     fetch('https://accounts.spotify.com/api/token', authParameters)
-    //         .then((result) => result.json())
-    //         .then((data) => {
-    //             settokenkey(data.access_token)
-    //             console.log(tokenkey)
-    //         })
-    // }, [])
+    const [playlist, setplaylist] = useState(null)
+    const ref = React.useRef(null)
+    function fetchtokenkey() {
+        var authParameters = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: 'grant_type=client_credentials&client_id=' + clientId + '&client_secret=' + clientSecret,
+        }
+        fetch('https://accounts.spotify.com/api/token', authParameters)
+            .then((result) => result.json())
+            .then((data) => {
+                settokenkey(data.access_token)
+                console.log(tokenkey)
+            })
+    }
+    useEffect(() => {
+        fetchtokenkey()
+    }, [])
+    function smoothingdown() {
+        setplayerdisplay(true)
+        setTimeout(scrolldown, 100)
+    }
+    function scrolldown() {
+        ref.current?.scrollIntoView({ behavior: 'smooth' })
+    }
     async function fetchToken() {
         var showParameters = {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
-                Authorization:
-                    'Bearer ' +
-                    'BQDMq1abAlM265ayTJmlQVMjjPeYPyANYKnhM3_8Bb6fDNvLBo3Z4AQyQ3CPGWxjDgvWTDwPpv6VpeXochexcYpTdA6dL3Y2RscKOBl9gd0mAYoBfVYr',
+                Authorization: 'Bearer ' + tokenkey,
             },
         }
+
         fetch('https://api.spotify.com/v1/shows/1HIq0d9AZ5KmCp1ZaMsbGs?market=ES', showParameters)
             .then((response) => response.json())
             .then((data) => {
                 setspotifydata(
-                    <div className="xs:flex block mx-7 items-center group">
-                        <img
-                            src={data.images[0].url}
-                            className="rounded-lg drop-shadow-xl group-hover:drop-shadow-2xl duration-200 xs:h-[270px] h-[200px] w-auto block xs:hidden mb-4"
-                            alt="show image"
-                        />
-                        <div className="block mr-7">
-                            <h1 className="font-fatface text-5xl">{data.name}</h1>
-                            <p className="font-bold">{data.total_episodes}&thinsp;/&thinsp;Episodes</p>
-                            <p className="font-fatface text-lg mt-1">{data.description}</p>
-                            <button className="border-[2px] border-black hover:drop-shadow-lg px-2 py-1 mt-2 text-xl hover:bg-[#000] hover:border-[#000] drop-shadow-sm hover:text-white duration-100  font-light  rounded-md ">
-                                Listen
-                            </button>
+                    <div>
+                        <div className="xs:flex block mx-7 items-center group">
+                            <img
+                                src={data.images[0].url}
+                                className="rounded-lg drop-shadow-xl group-hover:drop-shadow-2xl duration-200 xs:h-[270px] h-[200px] w-auto block xs:hidden mb-4"
+                                alt="show image"
+                            />
+                            <div className="block mr-7">
+                                <h1 className="font-fatface text-5xl">{data.name}</h1>
+                                <p className="font-bold">{data.total_episodes}&thinsp;/&thinsp;Episodes</p>
+                                <p className="font-fatface text-lg mt-1">{data.description}</p>
+                                <button
+                                    onClick={() => {
+                                        smoothingdown()
+                                    }}
+                                    className="border-[2px] border-black hover:drop-shadow-lg px-2 py-1 mt-2 text-xl hover:bg-[#000] hover:border-[#000] drop-shadow-sm hover:text-white duration-100  font-light  rounded-md "
+                                >
+                                    Learn more
+                                </button>
+                            </div>
+                            <div className="flex-1"></div>
+                            <img
+                                src={data.images[0].url}
+                                className="rounded-lg drop-shadow-xl group-hover:drop-shadow-2xl duration-200 xs:h-[270px] h-[200px] w-auto hidden xs:flex"
+                                alt="show image"
+                            />
                         </div>
-                        <div className="flex-1"></div>
-                        <img
-                            src={data.images[0].url}
-                            className="rounded-lg drop-shadow-xl group-hover:drop-shadow-2xl duration-200 xs:h-[270px] h-[200px] w-auto hidden xs:flex"
-                            alt="show image"
-                        />
-                        {/* <Link className='text-xl mt-2' href={spotifydata.external_urls.spotify}>Listen on Spotify</Link> */}
+                    </div>
+                )
+                // ---------------------------
+                setplaylist(
+                    <div>
+                        <div className="xs:block block mx-5 items-center ">
+                            <h1 className="font-bold text-3xl text-center">All episodes of {data.name}</h1>
+                            <ul className="rounded-lg p-4">
+                                {data.episodes.items.map((data) => (
+                                    <li key={data.id} className="my-4 hover:drop-shadow-xl">
+                                        <h1 className="text-lg ">{data.name}</h1>
+                                        <p>{data.release_date}</p>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
                     </div>
                 )
             })
@@ -65,7 +97,29 @@ const PodcastSpotify = () => {
     useEffect(() => {
         fetchToken()
     }, [])
-    return <div>{spotifydata}</div>
+    return (
+        <div>
+            <div
+                className="h-[100vh] flex-wrap justify-center items-center  bg-orange-400 flex mx-auto snap-center "
+                id="podcast-aria"
+            >
+                <div className="max-w-3xl mx-auto block p-5">
+                    <div className="mx-auto">
+                        <p className="text-6xl font-extrabold font-fatface mb-[70px] text-center ">Podcast</p>
+                    </div>
+                    <div className="justify-center items-center flex">{!spotifydata ? 'Loading...' : spotifydata}</div>
+                </div>
+            </div>
+            <div
+                ref={ref}
+                className={`h-[100vh] flex-wrap justify-center items-center  bg-orange-400 ${
+                    playerdisplay ? 'flex' : 'hidden'
+                } mx-auto snap-center `}
+            >
+                {playlist}
+            </div>
+        </div>
+    )
 }
 
 export default PodcastSpotify

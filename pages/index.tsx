@@ -15,19 +15,8 @@ const Home = () => {
                     <p className="text-2xl">Podcast</p>
                 </div>
             </div>
-            <div
-                className="h-[100vh] flex-wrap justify-center items-center  bg-orange-400 flex mx-auto snap-center "
-                id="podcast-aria"
-            >
-                <div className="max-w-3xl mx-auto block p-5">
-                    <div className="mx-auto">
-                        <p className="text-6xl font-extrabold font-fatface mb-[70px] text-center ">Podcast</p>
-                    </div>
-                    <div className="justify-center items-center flex">
-                        <PodcastSpotify />
-                    </div>
-                </div>
-            </div>
+          
+                <PodcastSpotify />
         </main>
     )
 }
