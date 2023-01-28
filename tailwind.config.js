@@ -10,6 +10,9 @@ module.exports = {
                 fatface: ["'Abril Fatface', 'cursive'"],
             },
         },
+        screens: {
+            xs: '800px',
+        },
     },
     plugins: [],
 }

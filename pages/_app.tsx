@@ -4,10 +4,12 @@ import Footer from '../components/Footer'
 import Header from '../components/Header'
 function MyApp({ Component, pageProps }: AppProps) {
     return (
-        <main className="mx-auto">
+        <main className="mx-auto bg-orange-400">
             <Header />
             <Component {...pageProps} />
-            <Footer />
+            {/* <div className="max-w-4xl mx-auto ">
+                <Footer />
+            </div> */}
         </main>
     )
 }
