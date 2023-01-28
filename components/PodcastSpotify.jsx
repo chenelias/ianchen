@@ -23,9 +23,9 @@ const PodcastSpotify = () => {
             fetch('https://accounts.spotify.com/api/token', authParameters)
                 .then((result) => result.json())
                 .then((data) => {
-                    settokenkey(data.access_token)
-                    console.log(data)
                     setLoading(false)
+                    loading && settokenkey(data.access_token)
+                    console.log(data)
                 })
         }
         fetchtokenkey()
