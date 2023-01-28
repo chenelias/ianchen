@@ -23,7 +23,7 @@ const PodcastSpotify = () => {
                 .then((result) => result.json())
                 .then((data) => {
                     settokenkey(data.access_token)
-                    console.log(tokenkey)
+                    console.log(data)
                 })
         }
         fetchtokenkey()
