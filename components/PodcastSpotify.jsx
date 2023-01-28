@@ -63,9 +63,13 @@ const PodcastSpotify = () => {
                                           alt="show image"
                                       /> */}
                                       <div className="block mr-7">
-                                          <h1 className="font-fatface text-5xl">{data.name}</h1>
-                                          <p className="font-bold">{data.total_episodes}&thinsp;/&thinsp;Episodes</p>
-                                          <p className="font-fatface text-lg mt-1">{data.description}</p>
+                                          <h1 className="font-fatface text-5xl">Booster Shot</h1>
+                                          <p className="font-bold">2&thinsp;/&thinsp;Episodes</p>
+                                          <p className="font-fatface text-lg mt-1">
+                                              As a high student who is interested in storytelling and medicine from
+                                              Taiwan, this podcast covers all interesting story with popular medical
+                                              science. So, if you're just like me, tune in Booster Shot!
+                                          </p>
                                           <button
                                               onClick={() => {
                                                   smoothingdown()
@@ -77,7 +81,7 @@ const PodcastSpotify = () => {
                                       </div>
                                       <div className="flex-1"></div>
                                       <img
-                                          src={data.images[0].url}
+                                          src={'https://i.scdn.co/image/ab6765630000ba8aa2f397e5684a6891d4cf8d5e'}
                                           className="rounded-lg drop-shadow-xl group-hover:drop-shadow-2xl duration-200 xs:h-[270px] h-[200px] w-auto hidden xs:flex"
                                           alt="show image"
                                       />
