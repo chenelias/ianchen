@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import React, { useState, useEffect } from 'react'
-import PodcastSpotify from '../components/PodcastSpotify'
+// import PodcastSpotify from '../components/PodcastSpotify'
 
 const Home = () => {
     return (
@@ -24,7 +24,7 @@ const Home = () => {
                         <p className="text-6xl font-extrabold font-fatface mb-[70px] text-center ">Podcast</p>
                     </div>
                     <div className="justify-center items-center flex">
-                        <PodcastSpotify />
+                        {/* <PodcastSpotify /> */}
                     </div>
                 </div>
             </div>
