@@ -63,7 +63,7 @@ const PodcastSpotify = () => {
                                 <div className="block mr-7">
                                     <h1 className="font-fatface text-5xl">{data.name}</h1>
                                     <p className="font-bold">{data.total_episodes}&thinsp;/&thinsp;Episodes</p>
-                                    {/* <p className="font-fatface text-lg mt-1">{data.description}</p> */}
+                                    <p className="font-fatface text-lg mt-1">{data.description}</p>
                                     <button
                                         onClick={() => {
                                             smoothingdown()
@@ -96,7 +96,7 @@ const PodcastSpotify = () => {
                                         >
                                             <div className="block">
                                                 <h1 className="text-xl font-bold">{data.name}</h1>
-                                                <p className="mt-2">{data.description}</p>
+                                                {/* <p className="mt-2">{data.description}</p> */}
                                                 <p className="mt-2">{data.release_date}</p>
                                             </div>
                                             <div className="flex-1" />
