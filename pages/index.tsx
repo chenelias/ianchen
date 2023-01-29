@@ -31,7 +31,7 @@ const Home = () => {
                             <p className="group-hover:flex hidden font-bold duration-100">-</p>
                         </button>
                         <br />
-                        <button onClick={scrollAbout} className="inline-flex text-2xl group  mt-2">
+                        <button onClick={scrollAbout} className="inline-flex text-2xl group mt-5">
                             <p className="group-hover:flex hidden font-bold duration-100">-</p>&thinsp;About Me&thinsp;
                             <p className="group-hover:flex hidden font-bold duration-100">-</p>
                         </button>
