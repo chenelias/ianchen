@@ -35,7 +35,7 @@ const PodcastSpotify = () => {
             >
                 <div className="max-w-3xl mx-auto block p-5">
                     <div className="mx-auto">
-                        <p className="text-6xl font-extrabold font-fatface mb-[40px] text-center ">Podcast</p>
+                        <p className="text-6xl font-extrabold font-fatface xs:mb-[50px] mb-[20px] text-center ">Podcast</p>
                     </div>
                     <div className="justify-center items-center flex">
                         {podcastdata ? (

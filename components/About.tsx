@@ -7,7 +7,7 @@ const About = () => {
             <div className="block">
                 <div className="max-w-3xl mx-auto block p-5">
                     <div className="mx-auto">
-                        <p className="text-6xl font-extrabold font-fatface mb-[40px] text-center ">About Me</p>
+                        <p className="text-6xl font-extrabold font-fatface xs:mb-[50px] mb-[20px] text-center ">About Me</p>
                     </div>
                     <div className="justify-center items-center flex">
                         <p className="text-lg">
@@ -19,7 +19,7 @@ const About = () => {
                         Ian Chen
                     </p>
                 </div>
-                <div className="mt-5 text-md text-center">
+                <div className="xs:mt-5 mt-1 text-md text-center">
                     <p>© Ian Chen&nbsp;{new Date().getFullYear()} All rights reserved</p>
                 </div>
             </div>
