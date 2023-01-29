@@ -43,7 +43,7 @@ const PodcastSpotify = () => {
                                 <div className="xs:flex block mx-7 items-center group">
                                     <img
                                         src={podcastdata.images[0].url}
-                                        className="rounded-lg drop-shadow-xl group-hover:drop-shadow-2xl duration-200 xs:h-[270px] h-[200px] w-auto block xs:hidden mb-4"
+                                        className="rounded-lg drop-shadow-xl group-hover:drop-shadow-2xl duration-200 xs:h-[270px] h-[150px] w-auto block xs:hidden mb-2"
                                         alt="show image"
                                     />
                                     <div className="block mr-7">
