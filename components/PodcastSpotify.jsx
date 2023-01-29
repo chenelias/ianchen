@@ -5,9 +5,6 @@ import { Credentials } from './Credentials'
 import axios from 'axios'
 const PodcastSpotify = () => {
     const spotify = Credentials()
-    const clientId = '37eda16d8b0b4f44907b58e671802523'
-    const clientSecret = '8637a9f7a2274aaaac4699182f819248'
-    const ref = React.useRef(null)
     const [token, setToken] = useState('')
     const [genres, setGenres] = useState({ selectedGenre: '', listOfGenresFromAPI: [] })
     const [podcastdata, setpodcastdata] = useState(null)
@@ -31,124 +28,14 @@ const PodcastSpotify = () => {
             })
         })
     }, [genres.selectedGenre, spotify.ClientId, spotify.ClientSecret])
-
-    // useEffect(() => {
-    //     async function fetchtokenkey() {
-    //         var authParameters = {
-    //             method: 'POST',
-    //             headers: {
-    //                 'Content-Type': 'application/x-www-form-urlencoded',
-    //             },
-    //             body: 'grant_type=client_credentials&client_id=' + clientId + '&client_secret=' + clientSecret,
-    //         }
-    //         setLoading(true)
-    //         fetch('https://accounts.spotify.com/api/token', authParameters)
-    //             .then((result) => result.json())
-    //             .then((data) => {
-    //                 setLoading(false)
-    //                 !data || loading ? settokenkey(data.access_token) : ''
-    //                 console.log(data)
-    //             })
-    //     }
-    //     fetchtokenkey()
-    // }, [])
-    function smoothingdown() {
-        setTimeout(scrolldown, 100)
-    }
-    function scrolldown() {
-        ref.current?.scrollIntoView({ behavior: 'smooth' })
-    }
-    // useEffect(() => {
-    //     async function fetchToken() {
-    //         setload(true)
-    //         var showParameters = {
-    //             method: 'GET',
-    //             headers: {
-    //                 'Content-Type': 'application/json',
-    //                 Authorization: 'Bearer ' + tokenkey,
-    //             },
-    //         }
-
-    //         fetch('https://api.spotify.com/v1/shows/1HIq0d9AZ5KmCp1ZaMsbGs?market=ES', showParameters)
-    //             .then((response) => response.json())
-    //             .then((data) => {
-    //                 setload(false)
-    //                 !data || load
-    //                     ? setspotifydata(
-    //                           <div>
-    //                               <div className="xs:flex block mx-7 items-center group">
-    //                                   {/* <img
-    //                                       src={data.images[0].url}
-    //                                       className="rounded-lg drop-shadow-xl group-hover:drop-shadow-2xl duration-200 xs:h-[270px] h-[200px] w-auto block xs:hidden mb-4"
-    //                                       alt="show image"
-    //                                   /> */}
-    //                                   <div className="block mr-7">
-    //                                       <h1 className="font-fatface text-5xl">Booster Shot</h1>
-    //                                       <p className="font-bold">2&thinsp;/&thinsp;Episodes</p>
-    //                                       <p className="font-fatface text-lg mt-1 mb-[10px]">
-    //                                           As a high student who is interested in storytelling and medicine from
-    //                                           Taiwan, this podcast covers all interesting story with popular medical
-    //                                           science. So, if you're just like me, tune in Booster Shot!
-    //                                       </p>
-    //                                       <Link
-    //                                           href={'https://open.spotify.com/show/1HIq0d9AZ5KmCp1ZaMsbGs'}
-    //                                           //   onClick={() => {
-    //                                           //       smoothingdown()
-    //                                           //   }}
-    //                                           className="border-[2px] border-black hover:drop-shadow-lg px-2 py-1 !mt-[2] text-xl hover:bg-[#000] hover:border-[#000] drop-shadow-sm hover:text-white duration-100  font-light  rounded-md "
-    //                                       >
-    //                                           Learn more
-    //                                       </Link>
-    //                                   </div>
-    //                                   <div className="flex-1"></div>
-    //                                   <img
-    //                                       src={'https://i.scdn.co/image/ab6765630000ba8aa2f397e5684a6891d4cf8d5e'}
-    //                                       className="rounded-lg drop-shadow-xl group-hover:drop-shadow-2xl duration-200 xs:h-[270px] h-[200px] w-auto hidden xs:flex"
-    //                                       alt="show image"
-    //                                   />
-    //                               </div>
-    //                           </div>
-    //                       )
-    //                     : ''
-    //                 // ---------------------------
-    //                 // !data || load
-    //                 //     ? setplaylist(
-    //                 //           <div>
-    //                 //               <div className="xs:block block mx-2 items-center max-w-3xl ">
-    //                 //                   <h1 className="font-bold text-3xl text-center">All episodes of {data.name}</h1>
-    //                 //                   <ul className="rounded-lg p-4  overflow-scroll max-h-[65vh] mt-5">
-    //                 //                       {data.episodes.items.map((data) => (
-    //                 //                           <Link
-    //                 //                               href={data.external_urls.spotify}
-    //                 //                               key={data.id}
-    //                 //                               className="items-center flex my-4 hover:drop-shadow-2xl "
-    //                 //                           >
-    //                 //                               <div className="block">
-    //                 //                                   <h1 className="text-xl font-bold">{data.name}</h1>
-    //                 //                                   {/* <p className="mt-2">{data.description}</p> */}
-    //                 //                                   <p className="mt-2">{data.release_date}</p>
-    //                 //                               </div>
-    //                 //                               <div className="flex-1" />
-    //                 //                           </Link>
-    //                 //                       ))}
-    //                 //                   </ul>
-    //                 //               </div>
-    //                 //           </div>
-    //                 //       )
-    //                 //     : ''
-    //             })
-    //     }
-    //     fetchToken()
-    // }, [])
     return (
-        <div>
             <div
                 className="h-[100vh] flex-wrap justify-center items-center  bg-orange-400 flex mx-auto snap-center "
                 id="podcast-aria"
             >
                 <div className="max-w-3xl mx-auto block p-5">
                     <div className="mx-auto">
-                        <p className="text-6xl font-extrabold font-fatface mb-[70px] text-center ">Podcast</p>
+                        <p className="text-6xl font-extrabold font-fatface mb-[50px] text-center ">Podcast</p>
                     </div>
                     <div className="justify-center items-center flex">
                         {podcastdata ? (
@@ -164,10 +51,10 @@ const PodcastSpotify = () => {
                                         <p className="font-bold">
                                             {podcastdata.total_episodes}&thinsp;/&thinsp;Episodes
                                         </p>
-                                        <p className="font-fatface text-lg mt-1 mb-[10px]">{podcastdata.description}</p>
+                                        <p className="font-fatface text-lg mt-1 mb-[15px]">{podcastdata.description}</p>
                                         <Link
                                             href={podcastdata.external_urls.spotify}
-                                            className="border-[2px] border-black hover:drop-shadow-lg px-2 py-1 !mt-[2] text-xl hover:bg-[#000] hover:border-[#000] drop-shadow-sm hover:text-white duration-100  font-light  rounded-md "
+                                            className="border-[2px] border-black hover:drop-shadow-lg px-2 py-1 text-xl hover:bg-[#000] hover:border-[#000] drop-shadow-sm hover:text-white duration-100  font-light  rounded-md "
                                         >
                                             Listen on Spotify
                                         </Link>
@@ -186,7 +73,6 @@ const PodcastSpotify = () => {
                     </div>
                 </div>
             </div>
-        </div>
     )
 }
 
