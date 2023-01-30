@@ -20,7 +20,7 @@ const Home = () => {
     return (
         <main className="snap-y snap-proximity" id="index">
             <Head>
-                <title>Ian Chen - Home</title>
+                <title>IanChen - Home</title>
             </Head>
             <div className="h-[100vh] bg-orange-400 justify-center flex items-center snap-center ">
                 <div className="!block">
