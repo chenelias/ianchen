@@ -54,7 +54,7 @@ const PodcastSpotify = () => {
                                         <p className="font-fatface text-lg mt-1 mb-[15px]">{podcastdata.description}</p>
                                         <Link
                                             href={podcastdata.external_urls.spotify}
-                                            className="border-[2px] border-black hover:drop-shadow-lg px-2 py-1 text-xl hover:bg-[#000] hover:border-[#000] drop-shadow-sm hover:text-white duration-100  font-light  rounded-md "
+                                            className="border-[2px] border-black hover:drop-shadow-lg px-2 py-1 text-xl bg-[#000] border-[#000] drop-shadow-sm text-white duration-100 font-light rounded-md"
                                         >
                                             Listen on Spotify
                                         </Link>
