@@ -1,2 +1,2 @@
 # Ianchen - Home
-just a little site for my brother Podcast
+just a little site for my brother school podcast
